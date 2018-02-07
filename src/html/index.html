@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>360同城帮</title>
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/swiper.css">
+		<!--<link rel="stylesheet" type="text/css" href="../css/lbt.css"/>-->
+	</head>
+
+	<body>
+		<div id="nav">
+			<div class="left">
+				<ul>
+					<li>北京
+						<a href="city.html" id="tempHot">[切换城市]</a>
+					</li>
+					<li>
+						<a href="http://bang.360.cn">同城帮首页</a>
+					</li>
+				</ul>
+			</div>
+			<div class="right">
+				<ul>
+					<li>
+						<a href="#" class="user-login item">登录</a>
+					</li>
+					<li>
+						<a href="#" class="user-reg item">注册</a>
+					</li>
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li>
+						<a href="#">在线客服(9：00-21：00)</a>
+					</li>
+					<li>
+						<a href="#">客户服务</a>
+						<!--<p>
+							<a target="_blank" href="http://bang.360.cn/help">帮助中心</a>
+							<a target="_blank" href="/shangmen/pay">维修付款</a>
+						</p>-->
+					</li>
+					<li>
+						<a href="#">论坛</a>
+					</li>
+					<li>
+						<a href="#">投诉建议</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<!--  -->
+		<div id="banner">
+			<div class="left">
+				<a id=HeaderLogo class=logo href="/?from=index"></a>
+			</div>
+			<div class="right">
+				<ul>
+					<li>
+						<a href="#">二手优品</a>
+					</li>
+					<li>
+						<a href="#">手机回收</a>
+					</li>
+					<li>
+						<a href="#">手机维修</a>
+					</li>
+					<li>
+						<a href="#">电脑维修</a>
+					</li>
+					<li>
+						<a href="#">以旧换新</a>
+					</li>
+					<li>
+						<a href="#">手机租用</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!---->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a href="http://bang.360.cn/liangpin/nianhuo" target=_blank>
+						<img src="http://p8.qhmsg.com/t01f33137f9dde655ce.png">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="http://bang.360.cn/huishou?from=index" target=_blank>
+						<img src="http://p.ssl.qhmsg.com/t01f2fbcfa29801c4b2.jpg">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="http://bang.360.cn/huodong/banjiazu" target=_blank>
+						<img src="http://p4.qhmsg.com/t010277e84ce18b98b6.png">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<img src="http://p6.qhmsg.com/t019f09cd1c5850e1a7.png">
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+        <!--         -->
+		<div class="top-cate-small-slide">
+			<div class="top-cate-small-slide-inner">
+				<div class=item>
+					<a href="/shangmen/order?f_type=mobile&amp;yy_type=2&amp;fault_id=10&amp;showdetail=1&amp;from=index" target=_blank> <img src="https://p.ssl.qhimg.com/t01aad5c130b8653368.jpg"> </a>
+				</div>
+				<div class=item>
+					<a href="/xiu/battery?from=index" target=_blank> <img src="https://p.ssl.qhimg.com/t01dc8f9631026e7e17.jpg"> </a>
+				</div>
+				<div class=item>
+					<a href="/huanxin/kindle?from=index" target=_blank> <img src="https://p.ssl.qhimg.com/t013b648422d14559d0.png"> </a>
+				</div>
+				<div class=item>
+					<a href="/youpin/shengji?from=index" target=_blank> <img src="https://p.ssl.qhimg.com/t01fc1fd0e5522663ba.jpg"> </a>
+				</div>
+			</div>
+		</div>
+		<!-- 手机回收   -->
+		<div class=tit>
+			<div class="tit-inner">
+				<h2>热门手机回收</h2>
+				<a class="go-more" href="/huishou?from=index" target=_blank>查看更多</a>
+			</div>
+		</div>
+		
+	</body>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/lbt.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/baiduTemplate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/html" id="temp">
+
+		<%for(var i = 0; i < hotCity.length;i++){%>
+		<li>
+			<%=hotCity[i].name%>
+		</li>
+		<%}%>
+	</script>
+	<script src="../js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$.getJSON("http://localhost:8080/src/../data/city.json", function(res) {
+			console.log(res);
+			var cityObj = res.result;
+			var hotCity = cityObj.hotcity;
+			var cityList = cityObj.citylist;
+			$("#hot").html(baidu.template("tempHot", {
+				hotCity: hotCity
+			}));
+		})
+	</script>
+
+</html>
